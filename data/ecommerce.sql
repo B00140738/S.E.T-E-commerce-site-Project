@@ -50,7 +50,6 @@ CREATE TABLE Users (
  phone_number       VARCHAR(50),
  Address        	VARCHAR(50),
  user_types         VARCHAR(50),
- LoginStatus        VARCHAR(50),
  Email         		VARCHAR(50),
  user_name         VARCHAR(50),
  name        		VARCHAR(50),
