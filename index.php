@@ -5,7 +5,7 @@
 
     $pets = array_reverse($pets);
 
-    $cleverWelcomeMessage = 'All the love, none of the crap!';
+    $cleverWelcomeMessage = 'Art that works for you!';
     $pupCount = count($pets);
 ?>
 

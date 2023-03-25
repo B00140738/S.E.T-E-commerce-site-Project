@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>Agile Art: Art that works for you!</title>
+    <title>Agile Art | Home</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
