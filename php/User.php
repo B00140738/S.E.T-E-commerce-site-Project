@@ -4,6 +4,7 @@ class User {
 
     protected $username;
     protected $name;
+    protected $lastname;
     protected $email;
     protected $phone_number;
     protected $password;
@@ -13,9 +14,10 @@ class User {
     protected $type;
 
     //User Constructor
-    public function __construct($username, $name, $email, $phone_number, $password, $address, $type) {
+    public function __construct($username, $name, $lastname, $email, $phone_number, $password, $address, $type) {
         $this->username = $username;
         $this->name = $name;
+        $this->lastname = $lastname;
         $this->email = $email;
         $this->phone_number = $phone_number;
         $this->password = $password;
@@ -30,6 +32,10 @@ class User {
 
     public function getName() {
         return $this->name;
+    }
+
+    public function getLastName() {
+        return $this->lastname;
     }
 
     public function getEmail() {

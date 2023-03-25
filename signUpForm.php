@@ -30,6 +30,10 @@ require "lib/signUp.php";
         <input type="text" id="name" name="name" required>
         <br>
         <br>
+        <label for="name">Last name: </label>
+        <input type="text" id="lastname" name="lastname">
+        <br>
+        <br>
         <!--Email-->
         <label for="email">Email Address: </label>
         <input type="text" id="email" name="email" placeholder="john@doe.com" required>
