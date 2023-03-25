@@ -1,84 +1,32 @@
 <?php
-function signUp(){
+function signUp()
+{
+    if (isset($_POST['submit'])) {
+        require "../common.php";
 
-    //Get information from sign up form and set it as object attributes to be used by constructor
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $username = $_POST['username'];
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $phone_number = $_POST['phone_number'];
-        $password = $_POST['password'];
-        $address = $_POST['address'];
-        $type = $_POST['type'];
+        try {
+            require_once '../src/DBconnect.php';
+            $new_user = array(
+                "firstname" => escape($_POST['firstname']),
+                "lastname" => escape($_POST['lastname']),
+                "email" => escape($_POST['email']),
+                "age" => escape($_POST['age']),
+                "location" => escape($_POST['location'])
+            );
 
-        // Validate input (in case of empty values)
-        $errors = [];
-        if (empty($username)){
-            $errors[] = "Username is required";
+            $sql = sprintf("INSERT INTO %s (%s) values (%s)", "users", implode(", ", array_keys($new_user)),
+                ":" . implode(", :", array_keys($new_user))
+            );
+            $statement = $connection->prepare($sql);
+            $statement->execute($new_user);
+        } catch (PDOException $error) {
+            echo $sql . "<br>" . $error->getMessage();
         }
+    }
 
-        if (empty($name)){
-            $errors[] = "Please enter your name";
-        }
-
-        if (empty($email)){
-            $errors[] = "Email is required";
-        }
-
-        if (empty($phone_number)){
-            $errors[] = "Please enter your phone number";
-        }
-
-        if (empty($address)){
-            $errors[] = "Address is required";
-        }
-
-        if (empty($password)){
-            $errors[] = "Password is required";
-        }
-
-        if (empty($type)){
-            $errors[] = "please select your user type";
-        }
-
-        //if errors are present, print them out.
-        if ($errors != null){
-            // Display errors
-            foreach ($errors as $error){
-                echo "<p>$error</p>";
-            }
-        }
-
-        //If no errors are present, then continue.
-
-        else if (empty($errors)){
-            // Connect to database
-            $servername = "localhost";
-            $dbusername = "root";
-            $dbpassword = "";
-            $dbname = "ecommerce";
-            $dbconnection = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-        }
-
-        // Check connection
-        if ($dbconnection->connect_error) {
-            die("Connection failed: " . $dbconnection->connect_error);
-        }
-
-        // Prepare mySQL query statement and tell database what information is to be stored and of what type it is
-        $stmt = $dbconnection->prepare("INSERT INTO users (username, email,  password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $password);
-
-        // Execute statement
-        if ($stmt->execute()) {
-            echo "User created successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        // Close statement and connection
-        $stmt->close();
-        $dbconnection->close();
+    require "template/header.php";
+    if (isset($_POST['submit']) && $statement) {
+        echo $new_user['firstname'] . ' successfully added';
     }
 }
 ?>
