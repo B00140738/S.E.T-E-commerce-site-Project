@@ -8,6 +8,14 @@ DROP TABLE IF EXISTS Transactions;
 
 USE ECOMMERCE;
 
+CREATE TABLE Cart (
+ CartID           INT NOT NULL,
+ Cart_name         VARCHAR(50),
+
+CONSTRAINT Cart_Cart_ProductID_FK FOREIGN KEY (ProductID) REFERENCES Product (ProductID),
+CONSTRAINT Cart_CartID_PK PRIMARY KEY (CartID));
+
+
 CREATE TABLE Product (
  ProductID           INT NOT NULL,
  Style               VARCHAR(50),
