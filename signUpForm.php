@@ -74,5 +74,40 @@ require "lib/signUp.php";
     </form>
     </div>
     </div>
+
+    <?php
+    if (isset($_POST['submit'])) {
+        require "../common.php";
+
+        try{
+            require_once '../src/DBconnect.php';
+            $new_user = array(
+                "username" => escape($_POST['firstname']),
+                "name" => escape($_POST['firstname']),
+                "lastname" => escape($_POST['lastname']),
+                "email" => escape($_POST['email']),
+                "phonenumber" => escape($_POST['phonenumber']),
+                "password" => escape($_POST['password']),
+                "address" => escape($_POST['address']),
+                "type" => escape($_POST['type'])
+            );
+
+            $sql = sprintf("INSERT INTO %s (%s) values (%s)", "users", implode(", ", array_keys($new_user)),
+                ":" . implode(", :", array_keys($new_user))
+            );
+            $statement = $connection->prepare($sql);
+            $statement->execute($new_user);
+        }
+
+        catch(PDOException $error) {
+            echo $sql . "<br>" . $error->getMessage();
+        }
+    }
+
+    require "template/header.php";
+    if (isset($_POST['submit']) && $statement){
+        echo $new_user['firstname']. ' successfully added';
+    }
+    ?>
 </body>
 </html>
