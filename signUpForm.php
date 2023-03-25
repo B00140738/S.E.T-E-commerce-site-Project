@@ -18,6 +18,7 @@ require "lib/signUp.php";
     <h1 id="title">Nearly there, you're one step away from all your e-commerce needs!</h1>
     <br>
     <br>
+    <div class="container">
     <div class="form">
     <form action="User.php" method="POST">
         <!--Username-->
@@ -67,6 +68,7 @@ require "lib/signUp.php";
         <button id="signupbtn" onclick="<?php signUp(); ?>">Sign Up</button>
             <button id="cancelbtn">Cancel</button>
     </form>
+    </div>
     </div>
 </body>
 </html>

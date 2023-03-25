@@ -15,9 +15,9 @@
         <div class="container">
             <h1><?php echo strtoupper(strtolower($cleverWelcomeMessage)); ?></h1>
 
-            <p>With over <?php echo $pupCount ?> pet friends!</p>
+            <p>Sign up today!</p>
 
-            <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="signUpForm.php">Sign Up&raquo;</a></p>
         </div>
     </div>
 
