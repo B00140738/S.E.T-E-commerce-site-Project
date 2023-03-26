@@ -1,4 +1,5 @@
 set foreign_key_checks=0;
+DROP TABLE IF EXISTS Cart;
 DROP TABLE IF EXISTS PRODUCT;
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS User_has_product;
@@ -6,7 +7,7 @@ DROP TABLE IF EXISTS User_has_product;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Order_has_Product;
 DROP TABLE IF EXISTS Transactions;
-DROP TABLE IF EXISTS Cart;
+
 set foreign_key_checks=1;
 
  use Ecommerce;
@@ -30,7 +31,7 @@ CREATE TABLE Orders (
 CONSTRAINT Orders_OrderID_PK PRIMARY KEY (OrderID));
 
 CREATE TABLE Product (
- ProductID           INT NOT NULL,
+ ProductID           INT NOT NULL auto_increment,
  Style               VARCHAR(50),
  Artist_name         VARCHAR(50),
  price            	 VARCHAR(50),
@@ -46,20 +47,18 @@ INSERT INTO Product (ProductID, Style, Artist_name, price, product_name, descrip
 
 
 CREATE TABLE Users (
- UsersID           INT NOT NULL,
+ UsersID           INT NOT NULL auto_increment,
+ user_name         VARCHAR(50),
+ password         VARCHAR(50),
+ Email         		VARCHAR(50),
  phone_number       VARCHAR(50),
  Address        	VARCHAR(50),
  user_types         VARCHAR(50),
- Email         		VARCHAR(50),
- user_name         VARCHAR(50),
- name        		VARCHAR(50),
-  OrderID 		   INT NOT NULL,
 
- CONSTRAINT Users_Users_OrderID_FK  FOREIGN KEY (OrderID) REFERENCES Orders (OrderID),
  CONSTRAINT Users_UsersID_PK PRIMARY KEY (UsersID));
 
 CREATE TABLE User_has_product (
- User_has_productID          	INT NOT NULL,
+ User_has_productID          	INT NOT NULL auto_increment,
  Style              			VARCHAR(50),
  Artist_name       				VARCHAR(50),
  price            				VARCHAR(50),
@@ -74,7 +73,7 @@ ProductID 					INT NOT NULL,
 
 
 CREATE TABLE Order_has_Product (
- Order_has_ProductID          INT NOT NULL,
+ Order_has_ProductID          INT NOT NULL auto_increment,
  OrderID 		   INT NOT NULL,
  ProductID 		   INT NOT NULL,
  CONSTRAINT Order_has_Product_OrderID_FK FOREIGN KEY (OrderID) REFERENCES Orders (OrderID),

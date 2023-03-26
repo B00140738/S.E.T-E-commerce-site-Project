@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="css/signUpForm">
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,3 +7,4 @@
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
+<h1>Simple Database App</h1>
